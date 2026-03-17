@@ -1,0 +1,39 @@
+{
+	"id": "d0c03eb2-50e0-4170-9d5d-0c53913e45a8",
+	"name": "local",
+	"values": [
+		{
+			"key": "baseUrl",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "deviceId",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "accessToken",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "refreshToken",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "practiceAdminToken",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2026-03-17T10:55:00.348Z",
+	"_postman_exported_using": "Postman/11.33.5"
+}
