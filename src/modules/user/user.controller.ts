@@ -8,6 +8,7 @@ import {
   Param,
   Query,
   UseGuards,
+  ForbiddenException,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -29,7 +30,25 @@ export class UserController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('SUPER_ADMIN', 'PRACTICE_ADMIN')
   @Post()
-  async create(@Body() dto: CreateUserDto) {
+  async create(@CurrentUser() currentUser: any, @Body() dto: CreateUserDto) {
+    const creatorRole: string | undefined = currentUser?.roleId;
+    const targetRole: string | undefined = dto.roleId;
+
+    if (!creatorRole || !['SUPER_ADMIN', 'PRACTICE_ADMIN'].includes(creatorRole)) {
+      throw new ForbiddenException('Insufficient role to create users');
+    }
+
+    // No one can create another SUPER_ADMIN (only seeded one exists)
+    if (targetRole === 'SUPER_ADMIN') {
+      throw new ForbiddenException('Cannot create SUPER_ADMIN users');
+    }
+
+    // PRACTICE_ADMIN can create PRACTICE_ADMIN and STANDARD_USER only
+    // SUPER_ADMIN can also create PRACTICE_ADMIN and STANDARD_USER
+    if (!['PRACTICE_ADMIN', 'STANDARD_USER'].includes(targetRole ?? '')) {
+      throw new ForbiddenException('Invalid target role for user creation');
+    }
+
     const user = await this.userService.create(dto);
     return {
       message: MESSAGES.USER.CREATED,
