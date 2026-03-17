@@ -23,7 +23,7 @@ import { Permissions } from '../../common/decorators/permissions.decorator';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { MESSAGES } from '../../common/constants/messages';
 
-@Controller('users')
+@Controller({ path: 'users', version: '1' })
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

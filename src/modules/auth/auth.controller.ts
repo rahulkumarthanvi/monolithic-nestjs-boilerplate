@@ -1,10 +1,4 @@
-import {
-  Body,
-  Controller,
-  Post,
-  Req,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
 import { Throttle, SkipThrottle } from '@nestjs/throttler';
 import { AuthService } from './auth.service';
@@ -14,7 +8,7 @@ import { RefreshTokenDto } from './dto/refresh-token.dto';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 
-@Controller('auth')
+@Controller({ path: 'auth', version: '1' })
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
