@@ -8,6 +8,9 @@ build/
 
 # Environment and secrets
 .env
+.env.development
+.env.staging
+.env.production
 .env.local
 .env.*.local
 !.env.example

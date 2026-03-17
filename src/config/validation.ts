@@ -9,7 +9,7 @@ export function validateEnv(config: Record<string, unknown>) {
     ACCESS_TOKEN_EXPIRY: Joi.string().default('15m'),
     REFRESH_TOKEN_EXPIRY: Joi.string().default('7d'),
     NODE_ENV: Joi.string()
-      .valid('development', 'production', 'test')
+      .valid('development', 'staging', 'production', 'test')
       .default('development'),
   });
 

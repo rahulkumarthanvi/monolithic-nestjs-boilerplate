@@ -14,6 +14,10 @@ import { LoggerModule } from './modules/logger/logger.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: [
+        `.env.${process.env.NODE_ENV ?? 'development'}`,
+        '.env',
+      ],
       load: [configuration],
       validate: validateEnv,
     }),
