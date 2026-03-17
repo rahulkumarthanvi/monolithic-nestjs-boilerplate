@@ -14,10 +14,14 @@ import { LoggerModule } from './modules/logger/logger.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: [
-        `.env.${process.env.NODE_ENV ?? 'development'}`,
-        '.env',
-      ],
+      envFilePath:
+        process.env.NODE_ENV === 'development'
+          ? ['.env.development']
+          : process.env.NODE_ENV === 'staging'
+            ? ['.env.staging']
+            : process.env.NODE_ENV === 'production'
+              ? ['.env.production']
+              : ['.env'],
       load: [configuration],
       validate: validateEnv,
     }),
