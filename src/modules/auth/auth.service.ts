@@ -9,7 +9,7 @@ import { DeviceService } from '../device/device.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
-import { hashPassword, comparePassword } from '../../common/utils/password.util';
+import { comparePassword } from '../../common/utils/password.util';
 import { MESSAGES } from '../../common/constants/messages';
 
 @Injectable()
@@ -40,11 +40,10 @@ export class AuthService {
     if (existing) {
       throw new UnauthorizedException('Email already registered');
     }
-    const password = await hashPassword(dto.password);
     const user = await this.userService.create({
       name: dto.name,
       email: dto.email,
-      password,
+      password: dto.password,
       roleId: 'STANDARD_USER',
       permissions: ['READ_ONLY'],
       isActive: true,

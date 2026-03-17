@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from '../../app.module';
 import { UserService } from '../../modules/user/user.service';
-import { hashPassword } from '../../common/utils/password.util';
 
 async function bootstrap() {
   const app = await NestFactory.createApplicationContext(AppModule);
@@ -16,12 +15,10 @@ async function bootstrap() {
       return;
     }
 
-    const passwordHash = await hashPassword('Admin@123');
-
     await userService.create({
       name: 'Initial Super Admin',
       email: 'admin@example.com',
-      password: passwordHash,
+      password: 'Admin@123',
       roleId: 'SUPER_ADMIN',
       permissions: ['FULL_ACCESS'],
       isActive: true,

@@ -6,6 +6,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PaginationDto } from '../../common/dto/pagination.dto';
 import { buildPaginationMeta } from '../../common/utils/pagination.util';
+import { hashPassword } from '../../common/utils/password.util';
 
 @Injectable()
 export class UserService {
@@ -15,7 +16,11 @@ export class UserService {
   ) {}
 
   async create(dto: CreateUserDto): Promise<UserDocument> {
-    const user = new this.userModel(dto);
+    const passwordHash = await hashPassword(dto.password);
+    const user = new this.userModel({
+      ...dto,
+      password: passwordHash,
+    });
     return user.save();
   }
 
