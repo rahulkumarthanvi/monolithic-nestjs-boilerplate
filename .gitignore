@@ -1,0 +1,71 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime and cache
+.cache/
+.npm/
+.yarn/
+.pnp.*
+*.pid
+*.seed
+*.pid.lock
+
+# Test and coverage
+coverage/
+.nyc_output/
+*.lcov
+.jest/
+
+# IDE and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db
+
+# Optional and misc
+*.tgz
+.turbo/
+.vercel
+.netlify
+
+# Local Postman (keep docs/postman-collection.json and postman.json)
+# postman-environment-*.json
+
+# Debug
+.debug/
+
+# Temporary
+tmp/
+temp/
+*.tmp
+*.temp

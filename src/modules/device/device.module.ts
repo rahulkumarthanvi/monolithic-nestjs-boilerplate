@@ -1,0 +1,16 @@
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { DeviceModel, DeviceSchema } from './schemas/device.schema';
+import { DeviceService } from './device.service';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([
+      { name: DeviceModel.name, schema: DeviceSchema },
+    ]),
+  ],
+  providers: [DeviceService],
+  exports: [DeviceService, MongooseModule],
+})
+export class DeviceModule {}
+
